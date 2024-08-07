@@ -16,7 +16,7 @@ export default function Contact() {
     e.preventDefault();
     
     try {
-      await axios.post('http://localhost:5000/send', formData);
+      await axios.post('/api/send', formData);
       setMessage(true);
       console.log(formData);
     } catch (error) {

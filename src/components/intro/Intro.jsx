@@ -1,7 +1,6 @@
 import "./intro.scss";
 import { init } from "ityped";
 import { useEffect, useRef } from "react";
-import FileSaver from "file-saver";
 
 export default function Intro() {
   const textRef = useRef();
@@ -14,12 +13,18 @@ export default function Intro() {
       strings: ["Software Engineer", "Frontend-Developer"],
     });
   }, []);
-  const handleDownload=()=>{
-    const fileUrl = `${process.env.REACT_APP_CLIENT_URL}/assets/Sejal_Vijay_Resume_.pdf`;
+  const handleDownload = () => {
+    const fileUrl = "/assets/Sejal_Vijay_Resume_.pdf";
     console.log("Downloading file from: ", fileUrl);
-    FileSaver.saveAs(fileUrl, "Sejal_Vijay_Resume_.pdf");
+    
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = "Sejal_Vijay_Resume_.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
-
+  
   return (
     <div className="main">
     <div className="intro" id="intro">
